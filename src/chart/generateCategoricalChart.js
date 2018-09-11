@@ -1469,6 +1469,21 @@ const generateCategoricalChart = ({
       );
     }
 
+    renderCustomComponent = (element, index) => {
+      const { width, height, compact, layout, margin, id } = this.props;
+
+      return cloneElement(element, {
+        key: index,
+        chartProps: {
+          width,
+          height,
+          compact,
+          layout,
+          margin,
+          id
+        }
+      });
+    };
 
     render() {
       if (!validateWidthHeight(this)) { return null; }
@@ -1494,6 +1509,7 @@ const generateCategoricalChart = ({
         PolarGrid: { handler: this.renderPolarGrid, once: true },
         PolarAngleAxis: { handler: this.renderPolarAxis },
         PolarRadiusAxis: { handler: this.renderPolarAxis },
+        defaultHandler: { handler: this.renderCustomComponent },
       };
 
       // The "compact" mode is mainly used as the panorama within Brush

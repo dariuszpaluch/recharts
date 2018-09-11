@@ -422,6 +422,8 @@ export const renderByOrder = (children, renderMap) => {
 
         record[displayName] = true;
       }
+    } else {
+      elements.push(renderMap.defaultHandler(child, index));
     }
   });
 
